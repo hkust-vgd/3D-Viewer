@@ -1,5 +1,0 @@
-# Ignore all .pt files (PyTorch checkpoints/models)
-*.pt
-
-# Ignore the data folder in the root directory
-data/
