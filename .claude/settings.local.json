@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(findstr \":5000.*LISTEN\")",
-      "Bash(findstr \":5000\")",
-      "Bash(findstr \"LISTEN\")"
-    ]
-  }
-}
