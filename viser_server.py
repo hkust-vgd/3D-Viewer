@@ -4,8 +4,6 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
-import os
-import glob
 import time
 import threading
 import argparse
@@ -13,20 +11,11 @@ import pickle
 from typing import List, Optional
 
 import numpy as np
-import torch
 from tqdm.auto import tqdm
 import viser
 import viser.transforms as viser_tf
-import cv2
 
-
-try:
-    import onnxruntime
-except ImportError:
-    print("onnxruntime not found. Sky segmentation may not work.")
-
-from visual_util import segment_sky, download_file_from_url
-from vggt.utils.geometry import closed_form_inverse_se3, unproject_depth_map_to_point_map
+from vggt_utils import closed_form_inverse_se3, unproject_depth_map_to_point_map
 
 
 def viser_wrapper(
@@ -35,8 +24,7 @@ def viser_wrapper(
     init_conf_threshold: float = 50.0,  # represents percentage (e.g., 50 means filter lowest 50%)
     use_point_map: bool = False,
     background_mode: bool = False,
-    mask_sky: bool = False,
-    image_folder: str = None,
+    host: str = "0.0.0.0"
 ):
     """
     Visualize predicted 3D points and camera poses with viser.
@@ -56,12 +44,10 @@ def viser_wrapper(
         init_conf_threshold (float): Initial percentage of low-confidence points to filter out.
         use_point_map (bool): Whether to visualize world_points or use depth-based points.
         background_mode (bool): Whether to run the server in background thread.
-        mask_sky (bool): Whether to apply sky segmentation to filter out sky points.
-        image_folder (str): Path to the folder containing input images.
     """
     print(f"Starting viser server on port {port}")
 
-    server = viser.ViserServer(host="0.0.0.0", port=port)
+    server = viser.ViserServer(host=host, port=port)
     server.gui.configure_theme(titlebar_content=None, control_layout="collapsible")
 
     # Unpack prediction dict
@@ -82,10 +68,6 @@ def viser_wrapper(
     else:
         world_points = world_points_map
         conf = conf_map
-
-    # Apply sky segmentation if enabled
-    if mask_sky and image_folder is not None:
-        conf = apply_sky_segmentation(conf, image_folder)
 
     # Convert images from (S, 3, H, W) to (S, H, W, 3)
     # Then flatten everything for the point cloud
@@ -253,56 +235,6 @@ def viser_wrapper(
 # Helper functions for sky segmentation
 
 
-def apply_sky_segmentation(conf: np.ndarray, image_folder: str) -> np.ndarray:
-    """
-    Apply sky segmentation to confidence scores.
-
-    Args:
-        conf (np.ndarray): Confidence scores with shape (S, H, W)
-        image_folder (str): Path to the folder containing input images
-
-    Returns:
-        np.ndarray: Updated confidence scores with sky regions masked out
-    """
-    S, H, W = conf.shape
-    sky_masks_dir = image_folder.rstrip("/") + "_sky_masks"
-    os.makedirs(sky_masks_dir, exist_ok=True)
-
-    # Download skyseg.onnx if it doesn't exist
-    if not os.path.exists("skyseg.onnx"):
-        print("Downloading skyseg.onnx...")
-        download_file_from_url("https://huggingface.co/JianyuanWang/skyseg/resolve/main/skyseg.onnx", "skyseg.onnx")
-
-    skyseg_session = onnxruntime.InferenceSession("skyseg.onnx")
-    image_files = sorted(glob.glob(os.path.join(image_folder, "*")))
-    sky_mask_list = []
-
-    print("Generating sky masks...")
-    for i, image_path in enumerate(tqdm(image_files[:S])):  # Limit to the number of images in the batch
-        image_name = os.path.basename(image_path)
-        mask_filepath = os.path.join(sky_masks_dir, image_name)
-
-        if os.path.exists(mask_filepath):
-            sky_mask = cv2.imread(mask_filepath, cv2.IMREAD_GRAYSCALE)
-        else:
-            sky_mask = segment_sky(image_path, skyseg_session, mask_filepath)
-
-        # Resize mask to match H×W if needed
-        if sky_mask.shape[0] != H or sky_mask.shape[1] != W:
-            sky_mask = cv2.resize(sky_mask, (W, H))
-
-        sky_mask_list.append(sky_mask)
-
-    # Convert list to numpy array with shape S×H×W
-    sky_mask_array = np.array(sky_mask_list)
-    # Apply sky mask to confidence scores
-    sky_mask_binary = (sky_mask_array > 0.1).astype(np.float32)
-    conf = conf * sky_mask_binary
-
-    print("Sky segmentation applied successfully")
-    return conf
-
-
 parser = argparse.ArgumentParser(description="VGGT visualization only - loads predictions from pickle file")
 parser.add_argument(
     "--predictions_path", type=str, default="vggt_predictions.pkl", help="Path to the predictions pickle file"
@@ -313,9 +245,8 @@ parser.add_argument("--port", type=int, default=8080, help="Port number for the 
 parser.add_argument(
     "--conf_threshold", type=float, default=25.0, help="Initial percentage of low-confidence points to filter out"
 )
-parser.add_argument("--mask_sky", action="store_true", help="Apply sky segmentation to filter out sky points")
 parser.add_argument(
-    "--image_folder", type=str, default="examples/kitchen/images/", help="Path to folder containing images"
+    "--host", type=str, default="0.0.0.0", help="Host address"
 )
 
 
@@ -325,8 +256,7 @@ def main():
 
     This function:
     1. Loads the precomputed predictions from a pickle file
-    2. Optionally applies sky segmentation to filter out sky points
-    3. Visualizes the results using viser
+    2. Visualizes the results using viser
 
     Command-line arguments:
     --predictions_path: Path to the predictions pickle file
@@ -334,8 +264,7 @@ def main():
     --background_mode: Run the viser server in background mode
     --port: Port number for the viser server
     --conf_threshold: Initial percentage of low-confidence points to filter out
-    --mask_sky: Apply sky segmentation to filter out sky points
-    --image_folder: Path to folder containing input images
+    --host: the host address
     """
     args = parser.parse_args()
 
@@ -351,9 +280,6 @@ def main():
     else:
         print("Visualizing 3D points by unprojecting depth map by cameras")
 
-    if args.mask_sky:
-        print("Sky segmentation enabled - will filter out sky points")
-
     print("Starting viser visualization...")
 
     viser_server = viser_wrapper(
@@ -362,8 +288,7 @@ def main():
         init_conf_threshold=args.conf_threshold,
         use_point_map=args.use_point_map,
         background_mode=args.background_mode,
-        mask_sky=args.mask_sky,
-        image_folder=args.image_folder,
+        host=args.host
     )
     print("Visualization complete")
 

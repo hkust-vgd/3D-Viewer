@@ -1,0 +1,9 @@
+
+Hong Kong Underwater Pointclouds set # 1
+https://pcd-viewer.hkustvgd.com/?url=wwf_site_1
+https://pcd-viewer.hkustvgd.com/?url=ghost_gear
+https://pcd-viewer.hkustvgd.com/?url=wwf_360
+https://pcd-viewer.hkustvgd.com/?url=wwf_site_2
+
+HKUST Campus View
+https://splat-viewer.hkustvgd.com/
