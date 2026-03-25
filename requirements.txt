@@ -1,7 +1,0 @@
-# Core dependencies
-numpy
-tqdm
-viser
-
-# Flask web server
-flask

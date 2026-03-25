@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 HKUST VGD 3D Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-description {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+            background: white;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card-action {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-action {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .link-card {
+            display: block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(245, 87, 108, 0.4);
+        }
+
+        .link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .link-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .link-content p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .link-action {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .category-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌊 HKUST VGD 3D Viewer</h1>
+            <p class="subtitle">Explore 3D reconstructions from our research group</p>
+        </header>
+
+        <!-- Campus Section -->
+        <section class="section">
+            <h2>🏫 HKUST Campus View</h2>
+            <p class="section-description">3D campus reconstruction and visualization</p>
+
+            <div class="link-grid">
+                <a href="https://splat-viewer.hkustvgd.com/" target="_blank" class="link-card">
+                    <div class="link-icon">🎓</div>
+                    <div class="link-content">
+                        <h4>Campus Splat Viewer</h4>
+                        <p>3D campus reconstruction</p>
+                    </div>
+                    <div class="link-action">Open →</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Viser Scenes Section -->
+        <section class="section">
+            <h2>🪸 Benthic Viewer</h2>
+            <p class="section-description">3D reconstructions from Hong Kong's benthic zones</p>
+
+            <div class="grid">
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_0.viser" target="_blank" class="card">
+                    <div class="card-icon">🐠</div>
+                    <div class="card-title">Demo 0</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_1.viser" target="_blank" class="card">
+                    <div class="card-icon">🐟</div>
+                    <div class="card-title">Demo 1</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_2.viser" target="_blank" class="card">
+                    <div class="card-icon">🐙</div>
+                    <div class="card-title">Demo 2</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_3.viser" target="_blank" class="card">
+                    <div class="card-icon">🦀</div>
+                    <div class="card-title">Demo 3</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_4.viser" target="_blank" class="card">
+                    <div class="card-icon">🐚</div>
+                    <div class="card-title">Demo 4</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_5.viser" target="_blank" class="card">
+                    <div class="card-icon">🦈</div>
+                    <div class="card-title">Demo 5</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_6.viser" target="_blank" class="card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">Demo 6</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_7.viser" target="_blank" class="card">
+                    <div class="card-icon">🐬</div>
+                    <div class="card-title">Demo 7</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_8.viser" target="_blank" class="card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">Demo 8</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_9.viser" target="_blank" class="card">
+                    <div class="card-icon">🐊</div>
+                    <div class="card-title">Demo 9</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_10.viser" target="_blank" class="card">
+                    <div class="card-icon">🦞</div>
+                    <div class="card-title">Demo 10</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_11.viser" target="_blank" class="card">
+                    <div class="card-icon"> Seahorse</div>
+                    <div class="card-title">Demo 11</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_12.viser" target="_blank" class="card">
+                    <div class="card-icon">🪼</div>
+                    <div class="card-title">Demo 12</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_13.viser" target="_blank" class="card">
+                    <div class="card-icon">🐳</div>
+                    <div class="card-title">Demo 13</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_14.viser" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Demo 14</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_15.viser" target="_blank" class="card">
+                    <div class="card-icon">🐠</div>
+                    <div class="card-title">Demo 15</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_16.viser" target="_blank" class="card">
+                    <div class="card-icon">🐚</div>
+                    <div class="card-title">Demo 16</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+
+                <a href="viser-client/?playbackPath=http://localhost:8000/viser-scenes/vggt_predictions_17.viser" target="_blank" class="card">
+                    <div class="card-icon">🐙</div>
+                    <div class="card-title">Demo 17</div>
+                    <div class="card-description">3D reconstruction scene</div>
+                    <div class="card-action">View Scene →</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Underwater Pointclouds Section -->
+        <section class="section">
+            <h2>🐠 Hong Kong Underwater Pointclouds</h2>
+            <p class="section-description">3D reconstructions from WWF sites and underwater surveys</p>
+
+            <div class="link-grid">
+                <a href="https://pcd-viewer.hkustvgd.com/?url=wwf_site_1" target="_blank" class="link-card">
+                    <div class="link-icon">🌊</div>
+                    <div class="link-content">
+                        <h4>WWF Site #1</h4>
+                        <p>Underwater pointcloud visualization</p>
+                    </div>
+                    <div class="link-action">Open →</div>
+                </a>
+
+                <a href="https://pcd-viewer.hkustvgd.com/?url=ghost_gear" target="_blank" class="link-card">
+                    <div class="link-icon">👻</div>
+                    <div class="link-content">
+                        <h4>Ghost Gear</h4>
+                        <p>Underwater pointcloud visualization</p>
+                    </div>
+                    <div class="link-action">Open →</div>
+                </a>
+
+                <a href="https://pcd-viewer.hkustvgd.com/?url=wwf_360" target="_blank" class="link-card">
+                    <div class="link-icon">📸</div>
+                    <div class="link-content">
+                        <h4>WWF 360</h4>
+                        <p>Underwater pointcloud visualization</p>
+                    </div>
+                    <div class="link-action">Open →</div>
+                </a>
+
+                <a href="https://pcd-viewer.hkustvgd.com/?url=wwf_site_2" target="_blank" class="link-card">
+                    <div class="link-icon">🌊</div>
+                    <div class="link-content">
+                        <h4>WWF Site #2</h4>
+                        <p>Underwater pointcloud visualization</p>
+                    </div>
+                    <div class="link-action">Open →</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>🌊 HKUST Vision, Graphics and Design (VGD) Group</p>
+            <p>For more information, visit our <a href="https://github.com/hkust-vgd" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+</body>
+</html>
