@@ -22,11 +22,13 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
+            padding: 0 15px;
         }
 
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 40px 20px 30px;
         }
 
         h1 {
@@ -45,8 +47,8 @@
         .section {
             background: white;
             border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
@@ -67,14 +69,14 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 15px;
         }
 
         .card {
             background: #f8f9fa;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             border: 2px solid #e9ecef;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -91,31 +93,31 @@
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
             color: #667eea;
         }
 
         .card-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #333;
         }
 
         .card-description {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .card-action {
-            padding: 12px 20px;
+            padding: 10px 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -131,7 +133,7 @@
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             text-decoration: none;
             transition: all 0.3s ease;
         }
@@ -142,44 +144,45 @@
         }
 
         .link-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 12px;
         }
 
         .link-content h4 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
         }
 
         .link-content p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.9;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .link-action {
             color: rgba(255, 255, 255, 0.8);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .category-card {
             background: #f8f9fa;
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
             border-left: 4px solid #667eea;
         }
 
         .category-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #667eea;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .category-description {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
         }
 
         .link-grid {
@@ -190,32 +193,186 @@
 
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px 15px;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        footer a {
-            color: white;
-            text-decoration: none;
-        }
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.4rem;
+            }
 
-        footer a:hover {
-            text-decoration: underline;
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+
+            .link-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 1.8rem;
             }
 
-            h1 {
-                font-size: 2.2rem;
+            .subtitle {
+                font-size: 1rem;
             }
 
             .section {
-                padding: 20px;
+                padding: 15px;
+            }
+
+            .section h2 {
+                font-size: 1.4rem;
+            }
+
+            .section-description {
+                font-size: 0.9rem;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .card {
+                padding: 14px;
+            }
+
+            .card-icon {
+                font-size: 1.8rem;
+            }
+
+            .card-title {
+                font-size: 0.95rem;
+            }
+
+            .card-action {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+
+            .link-card {
+                padding: 14px;
+            }
+
+            .link-icon {
+                font-size: 1.6rem;
+            }
+
+            .link-content h4 {
+                font-size: 0.95rem;
+            }
+
+            .link-content p {
+                font-size: 0.8rem;
+            }
+
+            .link-action {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 25px 12px 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section {
+                padding: 15px 10px;
+                margin-bottom: 18px;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-description {
+                font-size: 0.95rem;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .card {
+                padding: 12px;
+                min-width: auto;
+            }
+
+            .card-icon {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+
+            .card-title {
+                font-size: 0.95rem;
+                margin-bottom: 4px;
+            }
+
+            .card-description {
+                font-size: 0.75rem;
+                margin-bottom: 8px;
+            }
+
+            .card-action {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+
+            .link-card {
+                padding: 12px;
+            }
+
+            .link-icon {
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+
+            .link-content h4 {
+                font-size: 0.95rem;
+                margin-bottom: 4px;
+            }
+
+            .link-content p {
+                font-size: 0.75rem;
+                margin-bottom: 8px;
+            }
+
+            .link-action {
+                font-size: 0.75rem;
+            }
+
+            footer {
+                padding: 15px 8px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -248,133 +405,115 @@
         <!-- Viser Scenes Section -->
         <section class="section">
             <h2>🪸 Benthic Viewer</h2>
-            <p class="section-description">3D reconstructions from Hong Kong's benthic zones</p>
+            <p class="section-description">Hong Kong Benthic Zones</p>
 
             <div class="grid">
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_0.viser" target="_blank" class="card">
-                    <div class="card-icon">🐠</div>
-                    <div class="card-title">Demo 0</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_1.viser" target="_blank" class="card">
-                    <div class="card-icon">🐟</div>
-                    <div class="card-title">Demo 1</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_2.viser" target="_blank" class="card">
-                    <div class="card-icon">🐙</div>
-                    <div class="card-title">Demo 2</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_3.viser" target="_blank" class="card">
-                    <div class="card-icon">🦀</div>
-                    <div class="card-title">Demo 3</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_4.viser" target="_blank" class="card">
-                    <div class="card-icon">🐚</div>
-                    <div class="card-title">Demo 4</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_5.viser" target="_blank" class="card">
-                    <div class="card-icon">🦈</div>
-                    <div class="card-title">Demo 5</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_6.viser" target="_blank" class="card">
-                    <div class="card-icon">🐢</div>
-                    <div class="card-title">Demo 6</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_7.viser" target="_blank" class="card">
-                    <div class="card-icon">🐬</div>
-                    <div class="card-title">Demo 7</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_8.viser" target="_blank" class="card">
-                    <div class="card-icon">🐋</div>
-                    <div class="card-title">Demo 8</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_9.viser" target="_blank" class="card">
-                    <div class="card-icon">🐊</div>
-                    <div class="card-title">Demo 9</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_10.viser" target="_blank" class="card">
-                    <div class="card-icon">🦞</div>
-                    <div class="card-title">Demo 10</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_11.viser" target="_blank" class="card">
-                    <div class="card-icon">🐚</div>
-                    <div class="card-title">Demo 11</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
-                </a>
-
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_12.viser" target="_blank" class="card">
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_0.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
                     <div class="card-icon">🪼</div>
-                    <div class="card-title">Demo 12</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
+                    <div class="card-title">Octopus</div>
+                    <div class="card-action">View →</div>
                 </a>
 
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_13.viser" target="_blank" class="card">
-                    <div class="card-icon">🐳</div>
-                    <div class="card-title">Demo 13</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_0.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🐟</div>
+                    <div class="card-title">Nudibranch</div>
+                    <div class="card-action">View →</div>
                 </a>
 
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_14.viser" target="_blank" class="card">
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_18.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">✴</div>
+                    <div class="card-title">Sea Urchin</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_19.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🪸</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_4.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🪸</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_5.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🦪</div>
+                    <div class="card-title">Reef</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_6.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🪸</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_7.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⛰️</div>
+                    <div class="card-title">Small Cave</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_8.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">Ray Fish</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_9.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🪸</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_10.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
                     <div class="card-icon">⭐</div>
-                    <div class="card-title">Demo 14</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
                 </a>
 
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_15.viser" target="_blank" class="card">
-                    <div class="card-icon">🐠</div>
-                    <div class="card-title">Demo 15</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_11.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
                 </a>
 
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_16.viser" target="_blank" class="card">
-                    <div class="card-icon">🐚</div>
-                    <div class="card-title">Demo 16</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_12.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
                 </a>
 
-                <a href="build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_17.viser" target="_blank" class="card">
-                    <div class="card-icon">🐙</div>
-                    <div class="card-title">Demo 17</div>
-                    <div class="card-description">3D reconstruction scene</div>
-                    <div class="card-action">View Scene →</div>
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_13.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_14.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_15.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_16.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">⭐</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
+                </a>
+
+                <a href="https://3dviewer.hkustvgd.com/build/?playbackPath=https://statics.hkustvgd.com/viser/hkzones/vggt_predictions_17.viser&initialCameraPosition=0.100,-0.180,-1.422&initialCameraLookAt=0.116,0.055,0.000&initialCameraUp=-0.000,-0.000,1.000" target="_blank" class="card">
+                    <div class="card-icon">🪸</div>
+                    <div class="card-title">Coral</div>
+                    <div class="card-action">View →</div>
                 </a>
             </div>
         </section>
@@ -382,14 +521,13 @@
         <!-- Underwater Pointclouds Section -->
         <section class="section">
             <h2>🐠 Hong Kong Underwater Pointclouds</h2>
-            <p class="section-description">3D reconstructions from WWF sites and underwater surveys</p>
+            <p class="section-description">Underwater pointclouds from WWF sites</p>
 
             <div class="link-grid">
                 <a href="https://pcd-viewer.hkustvgd.com/?url=wwf_site_1" target="_blank" class="link-card">
                     <div class="link-icon">🌊</div>
                     <div class="link-content">
                         <h4>WWF Site #1</h4>
-                        <p>Underwater pointcloud visualization</p>
                     </div>
                     <div class="link-action">Open →</div>
                 </a>
@@ -398,7 +536,6 @@
                     <div class="link-icon">👻</div>
                     <div class="link-content">
                         <h4>Ghost Gear</h4>
-                        <p>Underwater pointcloud visualization</p>
                     </div>
                     <div class="link-action">Open →</div>
                 </a>
@@ -407,7 +544,6 @@
                     <div class="link-icon">📸</div>
                     <div class="link-content">
                         <h4>WWF 360</h4>
-                        <p>Underwater pointcloud visualization</p>
                     </div>
                     <div class="link-action">Open →</div>
                 </a>
@@ -416,7 +552,6 @@
                     <div class="link-icon">🌊</div>
                     <div class="link-content">
                         <h4>WWF Site #2</h4>
-                        <p>Underwater pointcloud visualization</p>
                     </div>
                     <div class="link-action">Open →</div>
                 </a>
