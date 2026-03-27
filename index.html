@@ -188,13 +188,28 @@
         }
 
         .link-card {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: var(--link-card-bg);
             color: white;
             border-radius: 12px;
             padding: 20px;
             text-decoration: none;
             transition: all 0.3s ease;
+        }
+
+        .link-card-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .link-thumbnail {
+            flex-shrink: 0;
+            width: 100px;
+            height: auto;
+            margin-left: 15px;
+            border-radius: 8px;
         }
 
         .link-card:hover {
@@ -502,27 +517,36 @@
 
             <div class="link-grid">
                 <a href="https://splat-viewer.hkustvgd.com/" target="_blank" class="link-card">
-                    <div class="link-icon">⚓</div>
-                    <div class="link-content">
-                        <h4>Pier</h4>
+                    <div class="link-card-content">
+                        <div class="link-icon">⚓</div>
+                        <div class="link-content">
+                            <h4>Pier</h4>
+                        </div>
+                        <div class="link-action">Open →</div>
                     </div>
-                    <div class="link-action">Open →</div>
+                    <img src="resources/pier-view.png" class="link-thumbnail" alt="Pier">
                 </a>
 
                 <a href="https://splat-viewer.hkustvgd.com/?url=concourse.splat" target="_blank" class="link-card">
-                    <div class="link-icon">🏢</div>
-                    <div class="link-content">
-                        <h4>Concourse</h4>
+                    <div class="link-card-content">
+                        <div class="link-icon">🏢</div>
+                        <div class="link-content">
+                            <h4>Concourse</h4>
+                        </div>
+                        <div class="link-action">Open →</div>
                     </div>
-                    <div class="link-action">Open →</div>
+                    <img src="resources/concourse-view.png" class="link-thumbnail" alt="Concourse">
                 </a>
 
                 <a href="https://splat-viewer.hkustvgd.com/?url=campus.splat" target="_blank" class="link-card">
-                    <div class="link-icon">🏫</div>
-                    <div class="link-content">
-                        <h4>Campus</h4>
+                    <div class="link-card-content">
+                        <div class="link-icon">🏫</div>
+                        <div class="link-content">
+                            <h4>Campus</h4>
+                        </div>
+                        <div class="link-action">Open →</div>
                     </div>
-                    <div class="link-action">Open →</div>
+                    <img src="resources/campus-view.png" class="link-thumbnail" alt="Campus">
                 </a>
             </div>
         </section>
