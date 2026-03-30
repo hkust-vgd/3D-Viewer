@@ -212,8 +212,19 @@
             border-radius: 8px;
         }
 
-        .campus-grid .link-thumbnail {
-            width: 120px;
+        /* Campus View Section - Custom styles for longer cards */
+        #campus-view-section .link-grid {
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        }
+
+        #campus-view-section .link-card {
+            min-width: 320px;
+            padding: 22px;
+        }
+
+        #campus-view-section .link-thumbnail {
+            width: 130px;
+            margin-left: 18px;
         }
 
         .link-card:hover {
@@ -340,6 +351,19 @@
             .link-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
+
+            /* Campus view responsive */
+            #campus-view-section .link-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+
+            #campus-view-section .link-card {
+                min-width: 280px;
+            }
+
+            #campus-view-section .link-thumbnail {
+                width: 120px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -371,16 +395,6 @@
             .link-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
-            }
-
-            .campus-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .campus-grid .link-card {
-                flex-direction: row;
-                align-items: center;
             }
 
             .card {
@@ -419,9 +433,30 @@
             .link-action {
                 font-size: 0.8rem;
             }
+
+            /* Campus view responsive */
+            #campus-view-section .link-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            #campus-view-section .link-card {
+                min-width: 100%;
+                padding: 18px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #campus-view-section .link-card-content {
+                width: 100%;
+            }
+
+            #campus-view-section .link-thumbnail {
+                width: 110px;
+                margin: 16px auto 0 auto;
+            }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 480px) {
             header {
                 padding: 25px 12px 20px;
             }
@@ -453,8 +488,24 @@
             }
 
             .link-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
+            }
+
+            /* Campus view responsive */
+            #campus-view-section .link-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            #campus-view-section .link-card {
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #campus-view-section .link-thumbnail {
+                width: 90px;
+                margin: 12px auto 0 auto;
             }
 
             .card {
@@ -483,30 +534,7 @@
             }
 
             .link-card {
-                padding: 10px;
-            }
-
-            .link-thumbnail {
-                width: 64px;
-                height: auto;
-                margin-left: 10px;
-            }
-
-            .campus-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .campus-grid .link-card {
-                flex-direction: row;
-                align-items: center;
                 padding: 12px;
-            }
-
-            .campus-grid .link-thumbnail {
-                width: 100px;
-                margin-left: 15px;
-                margin-top: 0;
             }
 
             .link-icon {
@@ -548,11 +576,11 @@
         </header>
 
         <!-- Campus Section -->
-        <section class="section">
+        <section class="section" id="campus-view-section">
             <h2>🏫 HKUST Campus View</h2>
             <p class="section-description">3D campus reconstruction and visualization</p>
 
-            <div class="link-grid campus-grid">
+            <div class="link-grid">
                 <a href="https://splat-viewer.hkustvgd.com/" target="_blank" class="link-card">
                     <div class="link-card-content">
                         <div class="link-icon">⚓</div>
